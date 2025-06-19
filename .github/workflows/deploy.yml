@@ -21,7 +21,7 @@ jobs:
         run: |
           $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
           $commitHash = "${{ github.sha }}".Substring(0,7)
-          $filename = "frontend-deployment-$timestamp-$commitHash.zip"
+          $filename = "backend-deployment-$timestamp-$commitHash.zip"
           
           Compress-Archive -Path . -DestinationPath $filename -Force -CompressionLevel Optimal
           
