@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class TestController {
 
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "text/plain")
     public ResponseEntity<String> test() {
         return ResponseEntity.ok("Welcome");
     }
