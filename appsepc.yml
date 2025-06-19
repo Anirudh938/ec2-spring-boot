@@ -1,0 +1,19 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: C:\app
+    overwrite: yes
+hooks:
+  BeforeInstall:
+    - location: scripts\stop_server.ps1
+      timeout: 300
+      runas: Administrator
+  AfterInstall:
+    - location: scripts\install_dependencies.ps1
+      timeout: 600
+      runas: Administrator
+  ApplicationStart:
+    - location: scripts\start_server.ps1
+      timeout: 300
+      runas: Administrator
