@@ -1,0 +1,43 @@
+name: AWS Deployment
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-frontend:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_DEPLOY_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_DEPLOY_SECRET }}
+          aws-region: us-east-1
+
+      - name: Create deployment package
+        run: |
+          $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+          $commitHash = "${{ github.sha }}".Substring(0,7)
+          $filename = "frontend-deployment-$timestamp-$commitHash.zip"
+          
+          Compress-Archive -Path . -DestinationPath $filename -Force -CompressionLevel Optimal
+          
+          echo "DEPLOYMENT_PACKAGE=$filename" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        shell: powershell
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp $env:DEPLOYMENT_PACKAGE s3://my-codedeploy-artifacts-anirudh-codedeploy/backend/
+        shell: powershell
+
+      - name: Create CodeDeploy deployment
+        run: |
+          aws deploy create-deployment `
+            --application-name "BackendApp" `
+            --deployment-group-name "BackendDeploymentGroup" `
+            --s3-location bucket=my-codedeploy-artifacts-anirudh-codedeploy,key=backend/$env:DEPLOYMENT_PACKAGE,bundleType=zip `
+            --description "Auto-deployment from commit ${{ github.sha }}"
+        shell: powershell
