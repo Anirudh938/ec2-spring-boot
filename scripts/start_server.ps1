@@ -6,9 +6,8 @@ $logFile = "C:\codedeploy-debug.log"
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 Add-Content -Path $logFile -Value "$timestamp - ApplicationStart server script started"
 
-# Set Java and Maven paths
-$env:JAVA_HOME = "C:\Program Files\Java\jdk-17.0.14"
-$env:MAVEN_HOME = "C:\Program Files\Apache\maven\apache-maven-3.9.10"
+$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.14.7-hotspot"
+$env:MAVEN_HOME = "C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.10"
 $env:PATH = "$env:JAVA_HOME\bin;$env:MAVEN_HOME\bin;$env:PATH"
 
 # Navigate to application directory
