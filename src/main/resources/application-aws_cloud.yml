@@ -1,13 +1,13 @@
 cloud:
   aws:
     s3:
-      bucket: fullstack-app-dev-app-9l059ia9
+      bucket: fullstack-app-dev-app-o4831nka
     secretsmanager:
       secret-name: fullstack-app/dev/rds/credentials
 
 spring:
   datasource:
-    url: jdbc:mysql://fullstack-app-dev-nlb-da1d01947e5641ec.elb.us-east-1.amazonaws.com:3306/anirudhrevalli
+    url: jdbc:mysql://fullstack-app-dev-nlb-5bd981aaae377569.elb.us-east-1.amazonaws.com:3306/anirudhrevalli
     username: root
 
     hikari:
