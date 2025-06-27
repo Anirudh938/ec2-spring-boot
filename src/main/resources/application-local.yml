@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      accessKey: accesskey
-      secretKey: secretkey
+      accessKey: access
+      secretKey: secret
     s3:
       bucket: fullstack-app-dev-app-dfzb6ts3
     secretsmanager:
@@ -10,7 +10,7 @@ cloud:
 
 spring:
   datasource:
-    url: jdbc:mysql://fullstack-app-dev-nlb-863d350a59ce35e7.elb.us-east-1.amazonaws.com.com:3306/anirudhrevalli
+    url: jdbc:mysql://fullstack-app-dev-nlb-863d350a59ce35e7.elb.us-east-1.amazonaws.com:3306/anirudhrevalli
     username: root
     password: password
 
