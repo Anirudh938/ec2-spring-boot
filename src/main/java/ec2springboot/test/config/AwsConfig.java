@@ -72,8 +72,8 @@ public class AwsConfig {
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
         // Connection pool settings
-        config.setMaximumPoolSize(20);
-        config.setMinimumIdle(5);
+        config.setMaximumPoolSize(10);
+        config.setMinimumIdle(2);
         config.setConnectionTimeout(30000);
         config.setIdleTimeout(600000);
         config.setMaxLifetime(1800000);
