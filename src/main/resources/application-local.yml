@@ -6,11 +6,11 @@ cloud:
     s3:
       bucket: full-stack-anirudh-test-dev
     secretsmanager:
-      secret-name: placeholder
+      secret-name:
 
 spring:
   datasource:
-    url: jdbc:mysql://fullstack-app-dev-nlb-774eb43df9b6b71e.elb.us-east-1.amazonaws.com:3306/anirudhrevalli
+    url: jdbc:mysql://jdbc:mysql://fullstack-app-dev-nlb-3e5244ed9523ab61.elb.us-east-1.amazonaws.com:3306/anirudhrevalli:3306/anirudhrevalli
     username: root
     password: password
 
